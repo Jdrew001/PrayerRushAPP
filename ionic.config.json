@@ -1,0 +1,8 @@
+{
+  "name": "PrayerRush",
+  "app_id": "81d3b660",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
