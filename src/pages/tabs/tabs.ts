@@ -3,9 +3,11 @@ import { Component } from '@angular/core';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
+import { SuperTabsController } from 'ionic2-super-tabs';
 
 @Component({
-  templateUrl: 'tabs.html'
+  templateUrl: 'tabs.html',
+  selector: 'tabs-page'
 })
 export class TabsPage {
 
@@ -13,7 +15,12 @@ export class TabsPage {
   tab2Root = AboutPage;
   tab3Root = ContactPage;
 
-  constructor() {
+  constructor(private superTabsCtrl: SuperTabsController) {
+    
+  }
 
+  ngAfterViewInit()
+  {
+    this.superTabsCtrl.showToolbar(true);
   }
 }

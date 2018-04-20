@@ -1,0 +1,77 @@
+page-registration {
+
+    ion-header {
+        background-color: #09544e;
+    }
+
+    ion-navbar {
+        background-color: #09544e;
+        color: white;
+    }
+ 
+    .login-content {
+      background: white;
+      background-image: url('../../assets/imgs/Quepal.jpg');
+   
+      .logo-row {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+   
+      .login-box {
+        background: transparent;
+        padding: 10px 20px 0px 20px;
+        margin-top: 30px;
+        color: black;
+      }
+   
+      ion-row {
+         align-items: center;
+         text-align: center;
+       }
+   
+       ion-item {
+           border-radius: 30px !important;
+           padding-left: 30px !important;
+           font-size: 1.2em;
+           margin-bottom: 10px;
+           background-color: transparent;
+           box-shadow: none !important;
+           color:#09544e;
+
+           ion-input {
+               color: #09544e
+           }
+
+           ion-label {
+                color:#09544e !important;
+            }
+       }
+
+       
+   
+       .signup-col {
+         margin: 0px 16px 0px 16px;
+         padding-bottom: 20px;
+       }
+   
+       .item-inner {
+         border-bottom-color: transparent !important;
+         box-shadow: none !important;
+         color:white;
+       }
+   
+       .submit-btn {
+         border-color:#09544e;
+         background-color:#09544e;
+         color:white;
+       }
+   
+       .register-btn {
+         color: #ffffff;
+         font-size: 0.8em;
+         margin-top:4em;
+       }
+    }
+   
+  }

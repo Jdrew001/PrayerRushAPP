@@ -1,5 +1,12 @@
-<ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>
-</ion-tabs>
+<ion-header no-shadow >
+  <ion-navbar color="dark">
+    <ion-title style="text-align: center;">Prayer Rush</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content color="primary">
+  <super-tabs color="primary">
+    <super-tab color="primary" [root]="tab1Root" title="Home" icon="home" primary>Home</super-tab>
+    <super-tab color="primary" [root]="tab2Root" title="About" icon="information-circle" primary>About</super-tab>
+    <super-tab  color="primary" [root]="tab3Root" title="Contact" icon="contacts" primary>Contact</super-tab>
+  </super-tabs>
+</ion-content>

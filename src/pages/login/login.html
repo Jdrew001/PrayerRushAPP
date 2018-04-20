@@ -7,19 +7,19 @@
       <ion-col></ion-col>
     </ion-row>
     <div class="login-box">
-      <form >
+      <form [formGroup]="form" (ngSubmit)="login()">
         <ion-row>
           <ion-col>
             <ion-list inset>
 
                 <ion-item>
                     <ion-label floating>Email</ion-label>
-                    <ion-input type="email"></ion-input>
+                    <ion-input type="email" formControlName="email"></ion-input>
                 </ion-item>
               
                 <ion-item>
                     <ion-label floating>Password</ion-label>
-                    <ion-input type="pasword"></ion-input>
+                    <ion-input type="pasword" formControlName="password"></ion-input>
                 </ion-item>
               
             </ion-list>
@@ -29,10 +29,10 @@
         <ion-row>
           <ion-col class="signup-col">
             <button ion-button large class="submit-btn" full type="submit">Login</button>
-            <button ion-button class="register-btn" block clear>Create New Account</button>
           </ion-col>
         </ion-row>
         
       </form>
+      <button ion-button class="register-btn" block clear (click)="goToRegisterPage()">Create New Account</button>
     </div>
   </ion-content>
