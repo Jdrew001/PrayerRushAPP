@@ -9,11 +9,13 @@ import { SuperTabsModule } from 'ionic2-super-tabs';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
+import { ModalPage } from '../pages/modal/modal';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { RegistrationPage } from '../pages/registration/registration';
 
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,6 +28,7 @@ import { IonicPageModule } from 'ionic-angular';
   declarations: [
     MyApp,
     AboutPage,
+    ModalPage,
     ContactPage,
     HomePage,
     TabsPage,
@@ -46,6 +49,7 @@ import { IonicPageModule } from 'ionic-angular';
     ContactPage,
     HomePage,
     TabsPage,
+    ModalPage,
     LoginPage,
     RegistrationPage
   ],
@@ -53,6 +57,7 @@ import { IonicPageModule } from 'ionic-angular';
     StatusBar,
     SplashScreen,
     AuthService,
+    UserService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Dialogs,
     NativePageTransitions,

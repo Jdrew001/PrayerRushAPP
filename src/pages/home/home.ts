@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import {Platform} from 'ionic-angular';
+import { UserService } from '../../services/user.service';
+import { ModalPage } from '../../pages/modal/modal';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 
 @Component({
   selector: 'page-home',
@@ -9,14 +13,17 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class HomePage {
 
-  email :string; 
-  token :string;
+  email :string;
   helper = new JwtHelperService();
 
-  constructor(public navCtrl: NavController, private storage: Storage) {
-    this.storage.get("token").then((val) => {
-      this.token = this.helper.decodeToken(val)["email"];
-    });
+  constructor(public navCtrl: NavController, private storage: Storage, public plt: Platform, private userService: UserService,
+  private navTrans: NativePageTransitions) {
+
+
+    //when platform is loaded, check with api
+   
+
+    
   }
 
 }
