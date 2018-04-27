@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
@@ -10,6 +10,10 @@ import { ModalPage } from '../../pages/modal/modal';
 import { Storage } from '@ionic/storage';
 import {Platform} from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
+import { SettingsPage } from '../settings/settings';
+import { FeedbackPage } from '../feedback/feedback';
+import { LoginPage } from '../login/login';
+import { User } from '../../models/User';
 
 @Component({
   templateUrl: 'tabs.html',
@@ -21,24 +25,47 @@ export class TabsPage {
   tab2Root = AboutPage;
   tab3Root = ContactPage;
   helper = new JwtHelperService();
-  email :string;
+  email :string = "";
+  firstname : string = "";
+  lastname : string = "";
+  username : string = "";
+  user : User;
 
-  constructor(public navCtrl: NavController, private nativeTransitions: NativePageTransitions, private superTabsCtrl: SuperTabsController, private userService: UserService, private storage:Storage, private plt:Platform) {
-      plt.ready().then(() => {
+  pages: Array<{title: string, component: any}>;
 
+  constructor(private menuController: MenuController, public navCtrl: NavController, private nativeTransitions: NativePageTransitions, private superTabsCtrl: SuperTabsController, private userService: UserService, private storage:Storage, private plt:Platform) {
+    this.pages = [
+      { title: 'Settings', component: SettingsPage},
+      { title: 'Feedback', component: FeedbackPage}
+    ]; 
+    
+    plt.ready().then(() => {
+      this.menuController.swipeEnable(false);
       //check with api to see if the user has filled out information
       this.storage.get("token").then((val) => {
         this.email = this.helper.decodeToken(val)["email"];
         this.userService.checkUserInformation(this.email, val).subscribe(data => {
-          if(!data["condition"])
-          {
-            // show modal screen
-            let options: NativeTransitionOptions = {
-              direction: 'up',
-              duration: 500
-            };
-            this.nativeTransitions.slide(options);
-            this.navCtrl.push(ModalPage);
+
+          if(data["condition"] == null) {
+            console.log("username: " + data["firstname"]);
+            //store user information
+
+            //set the menu
+            this.email = data["email"];
+            this.firstname = data["firstname"];
+            this.lastname = data["lastname"];
+            this.username = data["username"];
+          } else {
+            if(!data["condition"])
+            {
+              // show modal screen
+              let options: NativeTransitionOptions = {
+                direction: 'up',
+                duration: 500
+              };
+              this.nativeTransitions.slide(options);
+              this.navCtrl.push(ModalPage);
+            }
           }
         }, error => {
 
@@ -50,5 +77,21 @@ export class TabsPage {
   ngAfterViewInit()
   {
     this.superTabsCtrl.showToolbar(true);
+
+    //load in the details in a user obj and then show this in the menu
+    
+    
+  }
+
+  openPage(page) {
+    this.navCtrl.push(page.component);
+  }
+
+  logout() {
+    this.storage.remove('token').then((val) => {
+      this.nativeTransitions.fade(null);
+      this.navCtrl.setRoot(LoginPage);
+      this.menuController.close();
+    });
   }
 }

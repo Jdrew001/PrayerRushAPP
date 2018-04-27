@@ -1,6 +1,35 @@
-<ion-header no-shadow >
+<ion-menu [content]="content">
+  <ion-content class="menu-content">
+    <div class="profile-section">
+      <ion-row class="logo-row">
+        <ion-col width-50>
+          <img src="../../assets/imgs/placeholder-image.png" />
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p>Name: {{ firstname }} {{ lastname }}</p>
+          <p>Email: {{ email }}</p>
+          <p>Username: {{username }}</p>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-list>
+      <button class="menu-buttons" no-lines menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+
+    <button class="logout-button" ion-button full large (click)="logout()">Logout</button>
+  </ion-content>
+
+</ion-menu>
+<ion-header #content swipeBackEnabled="false" swipeEnabled="false" no-shadow >
   <ion-navbar color="dark">
-    <ion-title style="text-align: center;">Prayer Rush</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
   </ion-navbar>
 </ion-header>
 <ion-content color="primary">

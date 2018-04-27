@@ -13,6 +13,8 @@ import { ModalPage } from '../pages/modal/modal';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { RegistrationPage } from '../pages/registration/registration';
+import { SettingsPage } from '../pages/settings/settings';
+import { FeedbackPage } from '../pages/feedback/feedback';
 
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
@@ -33,7 +35,9 @@ import { IonicPageModule } from 'ionic-angular';
     HomePage,
     TabsPage,
     LoginPage,
-    RegistrationPage
+    RegistrationPage,
+    SettingsPage,
+    FeedbackPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,9 @@ import { IonicPageModule } from 'ionic-angular';
     TabsPage,
     ModalPage,
     LoginPage,
-    RegistrationPage
+    RegistrationPage,
+    SettingsPage,
+    FeedbackPage
   ],
   providers: [
     StatusBar,

@@ -19,3 +19,37 @@
     background-color: #09544e !important;
     color: white !important;
 }
+
+// menu content on the app page
+.menu-content {
+    background-color: #149F8D !important;
+    color: white;
+}
+
+.profile-section {
+    background-color: #09544e;
+    text-align: center;
+}
+
+.profile-section img {
+    width: 50%;
+    margin: auto;
+    display: inline;
+    margin-top: 1.5em;
+}
+
+.menu-buttons {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    margin-top: 1.5em;
+    color: white;
+    text-align: center;
+}
+
+.logout-button {
+    position: fixed;
+    bottom: 0;
+    padding: 0px;
+    margin: 0px;
+}
