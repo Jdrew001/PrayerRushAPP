@@ -14,6 +14,7 @@ import { SettingsPage } from '../settings/settings';
 import { FeedbackPage } from '../feedback/feedback';
 import { LoginPage } from '../login/login';
 import { User } from '../../models/User';
+import { Constants } from '../../utilities/Constants';
 
 @Component({
   templateUrl: 'tabs.html',
@@ -49,12 +50,15 @@ export class TabsPage {
           if(data["condition"] == null) {
             console.log("username: " + data["firstname"]);
             //store user information
-
+            this.storage.set("username", data["username"]);
+            this.storage.set("firstname", data["firstname"]);
+            this.storage.set("lastname", data["lastname"]);
+            this.storage.set("email", data["email"])
             //set the menu
-            this.email = data["email"];
-            this.firstname = data["firstname"];
-            this.lastname = data["lastname"];
-            this.username = data["username"];
+            this.email = data[Constants.EMAIL];
+            this.firstname = data[Constants.FIRSTNAME];
+            this.lastname = data[Constants.LASTNAME];
+            this.username = data[Constants.USERNAME];
           } else {
             if(!data["condition"])
             {
