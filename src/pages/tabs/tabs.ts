@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, MenuController } from 'ionic-angular';
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
-import { HomePage } from '../home/home';
+import { PrayerList } from '../prayerlist/PrayerList';
 import { SuperTabsController } from 'ionic2-super-tabs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from '../../services/user.service';
@@ -15,6 +13,8 @@ import { FeedbackPage } from '../feedback/feedback';
 import { LoginPage } from '../login/login';
 import { User } from '../../models/User';
 import { Constants } from '../../utilities/Constants';
+import { PrayerRequest } from '../prayerrequest/PrayerRequest';
+import { Goals } from '../goals/Goals';
 
 @Component({
   templateUrl: 'tabs.html',
@@ -22,9 +22,9 @@ import { Constants } from '../../utilities/Constants';
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
+  tab1Root = PrayerList;
+  tab2Root = PrayerRequest;
+  tab3Root = Goals;
   helper = new JwtHelperService();
   email :string = "";
   firstname : string = "";
@@ -48,12 +48,11 @@ export class TabsPage {
         this.userService.checkUserInformation(this.email, val).subscribe(data => {
 
           if(data["condition"] == null) {
-            console.log("username: " + data["firstname"]);
             //store user information
             this.storage.set("username", data["username"]);
             this.storage.set("firstname", data["firstname"]);
             this.storage.set("lastname", data["lastname"]);
-            this.storage.set("email", data["email"])
+            this.storage.set("email", data["email"]);
             //set the menu
             this.email = data[Constants.EMAIL];
             this.firstname = data[Constants.FIRSTNAME];
@@ -72,7 +71,7 @@ export class TabsPage {
             }
           }
         }, error => {
-
+          // TODO
         });
       });
     });
@@ -81,10 +80,22 @@ export class TabsPage {
   ngAfterViewInit()
   {
     this.superTabsCtrl.showToolbar(true);
+  }
 
-    //load in the details in a user obj and then show this in the menu
-    
-    
+  ionViewWillEnter() {
+    console.log("View will enter");
+    this.storage.get("firstname").then(val => {
+      this.firstname = val;
+    });
+    this.storage.get("lastname").then(val => {
+      this.lastname = val;
+    });
+    this.storage.get("username").then(val => {
+      this.username = val;
+    });
+    this.storage.get("email").then(val => {
+      this.email = val;
+    });
   }
 
   openPage(page) {

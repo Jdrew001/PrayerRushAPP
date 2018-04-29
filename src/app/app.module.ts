@@ -6,9 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { Dialogs } from '@ionic-native/dialogs';
 import { SuperTabsModule } from 'ionic2-super-tabs';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
 import { ModalPage } from '../pages/modal/modal';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
@@ -25,19 +22,22 @@ import { IonicStorageModule } from '@ionic/storage';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { IonicPageModule } from 'ionic-angular';
+import { PrayerList } from '../pages/prayerlist/PrayerList';
+import { PrayerRequest } from '../pages/prayerrequest/PrayerRequest';
+import { Goals } from '../pages/goals/Goals';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     ModalPage,
-    ContactPage,
-    HomePage,
     TabsPage,
     LoginPage,
     RegistrationPage,
     SettingsPage,
-    FeedbackPage
+    FeedbackPage,
+    PrayerList,
+    PrayerRequest,
+    Goals
   ],
   imports: [
     BrowserModule,
@@ -49,15 +49,15 @@ import { IonicPageModule } from 'ionic-angular';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
     TabsPage,
     ModalPage,
     LoginPage,
     RegistrationPage,
     SettingsPage,
-    FeedbackPage
+    FeedbackPage,
+    PrayerList,
+    PrayerRequest,
+    Goals
   ],
   providers: [
     StatusBar,

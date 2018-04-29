@@ -33,6 +33,10 @@ export class ModalPage {
         this.userService.updateUserInformation(this.email, this.form.value.username, this.form.value.firstname, this.form.value.lastname, token)
         .subscribe(data => {
             this.navCtrl.pop();
+            this.storage.set("username", this.form.value.username);
+            this.storage.set("firstname", this.form.value.firstname);
+            this.storage.set("lastname", this.form.value.lastname);
+            this.storage.set("email", this.email);
         }, error => {
             console.log(error);
         });
