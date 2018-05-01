@@ -11,4 +11,8 @@ export class PrayerRequest {
 
   }
 
+  ionViewDidLoad() {
+    console.log("request loaded");
+  }
+
 }

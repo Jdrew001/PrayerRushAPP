@@ -33,9 +33,9 @@
   </ion-navbar>
 </ion-header>
 <ion-content color="primary">
-  <super-tabs color="primary">
-    <super-tab color="primary" [root]="tab1Root" title="Home" icon="home" primary>Home</super-tab>
-    <super-tab color="primary" [root]="tab2Root" title="About" icon="information-circle" primary>About</super-tab>
-    <super-tab  color="primary" [root]="tab3Root" title="Contact" icon="contacts" primary>Contact</super-tab>
-  </super-tabs>
+  <ion-tabs color="primary">
+    <ion-tab color="primary" [root]="tab1Root" tabTitle="List" tabIcon="md-list" primary>List</ion-tab>
+    <ion-tab color="primary" [root]="tab2Root" tabTitle="Requests" tabIcon="md-chatboxes">Requests</ion-tab>
+    <ion-tab color="primary" [root]="tab3Root" tabTitle="Goals" tabIcon="md-checkmark">Goals</ion-tab>
+  </ion-tabs>
 </ion-content>

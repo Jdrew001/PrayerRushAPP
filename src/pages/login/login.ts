@@ -19,6 +19,7 @@ export class LoginPage {
 
     user = {};
     form: FormGroup;
+    subscription : any;
 
     constructor(public plt: Platform, public navController: NavController, private authService: AuthService, private formBuilder:FormBuilder, private dialogs: Dialogs, private storage: Storage,
         private nativeTrans: NativePageTransitions, private spinnerDialog: SpinnerDialog) {
@@ -51,17 +52,18 @@ export class LoginPage {
     login() {
         this.spinnerDialog.show();
         setTimeout(() => {
-            this.authService.login(this.form.value.email, this.form.value.password)
+            this.subscription = this.authService.login(this.form.value.email, this.form.value.password)
                 .subscribe(data => {
                     this.storage.remove("token");
                     this.storage.set("token", data["token"]);
+                    this.storage.set("email", this.form.value.email);
                     this.nativeTrans.fade(null);
                     this.navController.setRoot(TabsPage);
                 }, error => {
                     this.dialogs.alert("Login attempt unsuccessful, please try again", "Login Failure");
             });
             this.spinnerDialog.hide();
-        }, 2000);  
+        }, 2000); 
     }
 
     goToRegisterPage() {

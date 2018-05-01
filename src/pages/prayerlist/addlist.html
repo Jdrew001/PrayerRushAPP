@@ -1,0 +1,35 @@
+<ion-header no-shadow>
+  <ion-navbar hideBackButton="true" color="dark">
+    <button clear="true" ion-button (click)="close()">
+      <ion-icon name="md-close"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+<ion-content class="home-content" padding>
+  <form [formGroup]="form" (ngSubmit)="addList()">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+
+          <ion-item>
+            <ion-label floating>List Item</ion-label>
+            <ion-input type="text" formControlName="name"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Description</ion-label>
+            <ion-input type="text" formControlName="description"></ion-input>
+          </ion-item>
+
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col >
+        <button ion-button large class="submit-btn" full type="submit">Add List</button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>

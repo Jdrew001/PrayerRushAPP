@@ -1,11 +1,29 @@
-<ion-content class="home-content" padding>
-  <h2>Welcome {{ email }}</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content class="home-content">
+
+  <ion-row class="logo-row" style="margin:0px;">
+      <img style="width: 100%; height: 150px" src="../../assets/imgs/placeholder-image.png" />
+  </ion-row>
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="showAddListPage()">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-list no-lines style="padding-bottom: 4em">
+    <div [@listAnimation]="list.length">
+
+      <ion-item-sliding #slidingItem *ngFor="let l of list">
+        <ion-item #item (click)="openOption(slidingItem, item)">
+          {{l.name}}
+          <p>{{l.description}}</p>
+        </ion-item>
+        <ion-item-options side="right" (click)="closeOption()">
+          <button danger (click)="updateItem(l)">Edit</button>
+          <button danger (click)="deleteListItem(l)"> Delete</button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+  </ion-list>
+
 </ion-content>

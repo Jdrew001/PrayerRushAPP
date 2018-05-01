@@ -43,37 +43,7 @@ export class TabsPage {
     plt.ready().then(() => {
       this.menuController.swipeEnable(false);
       //check with api to see if the user has filled out information
-      this.storage.get("token").then((val) => {
-        this.email = this.helper.decodeToken(val)["email"];
-        this.userService.checkUserInformation(this.email, val).subscribe(data => {
-
-          if(data["condition"] == null) {
-            //store user information
-            this.storage.set("username", data["username"]);
-            this.storage.set("firstname", data["firstname"]);
-            this.storage.set("lastname", data["lastname"]);
-            this.storage.set("email", data["email"]);
-            //set the menu
-            this.email = data[Constants.EMAIL];
-            this.firstname = data[Constants.FIRSTNAME];
-            this.lastname = data[Constants.LASTNAME];
-            this.username = data[Constants.USERNAME];
-          } else {
-            if(!data["condition"])
-            {
-              // show modal screen
-              let options: NativeTransitionOptions = {
-                direction: 'up',
-                duration: 500
-              };
-              this.nativeTransitions.slide(options);
-              this.navCtrl.push(ModalPage);
-            }
-          }
-        }, error => {
-          // TODO
-        });
-      });
+      
     });
   }
 
@@ -83,7 +53,6 @@ export class TabsPage {
   }
 
   ionViewWillEnter() {
-    console.log("View will enter");
     this.storage.get("firstname").then(val => {
       this.firstname = val;
     });
@@ -95,6 +64,37 @@ export class TabsPage {
     });
     this.storage.get("email").then(val => {
       this.email = val;
+    });
+    this.storage.get("token").then((val) => {
+      this.email = this.helper.decodeToken(val)["email"];
+      this.userService.checkUserInformation(this.email, val).subscribe(data => {
+
+        if(data["condition"] == null) {
+          //store user information
+          this.storage.set("username", data["username"]);
+          this.storage.set("firstname", data["firstname"]);
+          this.storage.set("lastname", data["lastname"]);
+          
+          //set the menu
+          this.email = data[Constants.EMAIL];
+          this.firstname = data[Constants.FIRSTNAME];
+          this.lastname = data[Constants.LASTNAME];
+          this.username = data[Constants.USERNAME];
+        } else {
+          if(!data["condition"])
+          {
+            // show modal screen
+            let options: NativeTransitionOptions = {
+              direction: 'up',
+              duration: 500
+            };
+            this.nativeTransitions.slide(options);
+            this.navCtrl.push(ModalPage);
+          }
+        }
+      }, error => {
+        // TODO
+      });
     });
   }
 

@@ -5,4 +5,21 @@ page-list {
         background-color: #149F8D !important;
         color: white;
     }
+
+    ion-fab {
+        width: 100px;
+        height: auto;
+
+        button {
+            width: 75px !important;
+            height: 75px !important;
+            margin-bottom: 15px;
+
+            ion-icon {
+                font-size: 25px !important;
+            }
+
+        }
+
+    }
 }

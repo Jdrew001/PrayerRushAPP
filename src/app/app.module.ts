@@ -1,10 +1,12 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Dialogs } from '@ionic-native/dialogs';
 import { SuperTabsModule } from 'ionic2-super-tabs';
+import { stagger } from '@angular/animations';
 
 import { ModalPage } from '../pages/modal/modal';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -15,6 +17,7 @@ import { FeedbackPage } from '../pages/feedback/feedback';
 
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
+import { ListService } from '../services/list.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,6 +28,9 @@ import { IonicPageModule } from 'ionic-angular';
 import { PrayerList } from '../pages/prayerlist/PrayerList';
 import { PrayerRequest } from '../pages/prayerrequest/PrayerRequest';
 import { Goals } from '../pages/goals/Goals';
+import { AddList } from '../pages/prayerlist/addlist';
+
+import { AnimationService, AnimatesDirective } from 'css-animator';
 
 @NgModule({
   declarations: [
@@ -36,11 +42,14 @@ import { Goals } from '../pages/goals/Goals';
     SettingsPage,
     FeedbackPage,
     PrayerList,
+    AddList,
     PrayerRequest,
-    Goals
+    Goals,
+    AnimatesDirective
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     SuperTabsModule.forRoot(),
@@ -56,6 +65,7 @@ import { Goals } from '../pages/goals/Goals';
     SettingsPage,
     FeedbackPage,
     PrayerList,
+    AddList,
     PrayerRequest,
     Goals
   ],
@@ -64,10 +74,12 @@ import { Goals } from '../pages/goals/Goals';
     SplashScreen,
     AuthService,
     UserService,
+    ListService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Dialogs,
     NativePageTransitions,
-    SpinnerDialog
+    SpinnerDialog,
+    AnimationService
   ]
 })
 export class AppModule {}
