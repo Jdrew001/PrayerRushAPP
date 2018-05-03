@@ -19,12 +19,12 @@ import {trigger, transition, style, animate, query, stagger} from '@angular/anim
       transition('* => *', [
         query(':leave', [
           stagger(10, 
-            [ animate('0.05s'), style({ opacity: 0})])
+            [ animate('0.2s'), style({ opacity: 0})])
         ],{ optional: true }),
         query(':enter', [
           style({ opacity: 0 }),
           stagger(20, [
-            animate('0.05s', style({ opacity: 1 }))
+            animate('0.2s', style({ opacity: 1 }))
           ])
         ], { optional: true })
       ])
@@ -104,7 +104,6 @@ export class PrayerList implements OnInit {
         this.listService.getUserLists(this.email, this.token)
           .subscribe(data => {
             this.list = data as List[];
-            console.log(this.email);  
           }, error => {
 
           });

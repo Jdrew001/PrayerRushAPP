@@ -10,6 +10,8 @@ import {Platform} from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { SettingsPage } from '../settings/settings';
 import { FeedbackPage } from '../feedback/feedback';
+import { FriendsPage } from '../friends/friends';
+
 import { LoginPage } from '../login/login';
 import { User } from '../../models/User';
 import { Constants } from '../../utilities/Constants';
@@ -37,7 +39,8 @@ export class TabsPage {
   constructor(private menuController: MenuController, public navCtrl: NavController, private nativeTransitions: NativePageTransitions, private superTabsCtrl: SuperTabsController, private userService: UserService, private storage:Storage, private plt:Platform) {
     this.pages = [
       { title: 'Settings', component: SettingsPage},
-      { title: 'Feedback', component: FeedbackPage}
+      { title: 'Feedback', component: FeedbackPage},
+      { title: 'Friends', component: FriendsPage }
     ]; 
     
     plt.ready().then(() => {

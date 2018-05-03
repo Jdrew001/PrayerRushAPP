@@ -14,10 +14,16 @@ import { LoginPage } from '../pages/login/login';
 import { RegistrationPage } from '../pages/registration/registration';
 import { SettingsPage } from '../pages/settings/settings';
 import { FeedbackPage } from '../pages/feedback/feedback';
+import { PrayerList } from '../pages/prayerlist/PrayerList';
+import { PrayerRequest } from '../pages/prayerrequest/PrayerRequest';
+import { Goals } from '../pages/goals/Goals';
+import { AddList } from '../pages/prayerlist/addlist';
+import { FriendsPage } from '../pages/friends/friends';
 
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { ListService } from '../services/list.service';
+import { FriendService } from '../services/friend.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,10 +31,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { IonicPageModule } from 'ionic-angular';
-import { PrayerList } from '../pages/prayerlist/PrayerList';
-import { PrayerRequest } from '../pages/prayerrequest/PrayerRequest';
-import { Goals } from '../pages/goals/Goals';
-import { AddList } from '../pages/prayerlist/addlist';
+
+
 
 import { AnimationService, AnimatesDirective } from 'css-animator';
 
@@ -45,6 +49,7 @@ import { AnimationService, AnimatesDirective } from 'css-animator';
     AddList,
     PrayerRequest,
     Goals,
+    FriendsPage,
     AnimatesDirective
   ],
   imports: [
@@ -67,7 +72,8 @@ import { AnimationService, AnimatesDirective } from 'css-animator';
     PrayerList,
     AddList,
     PrayerRequest,
-    Goals
+    Goals,
+    FriendsPage
   ],
   providers: [
     StatusBar,
@@ -75,6 +81,7 @@ import { AnimationService, AnimatesDirective } from 'css-animator';
     AuthService,
     UserService,
     ListService,
+    FriendService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Dialogs,
     NativePageTransitions,
