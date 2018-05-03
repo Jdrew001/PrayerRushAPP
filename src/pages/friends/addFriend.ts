@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, List } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { ToastService } from '../../services/toast.service';
 import { FriendService } from '../../services/friend.service';
 import {trigger, transition, style, animate, query, stagger} from '@angular/animations';
 
@@ -32,7 +33,7 @@ export class AddFriend {
     empty = true;
     requested = false;
 
-    constructor(private navController : NavController, private friendService: FriendService, private storage: Storage) {}
+    constructor(private navController : NavController, private friendService: FriendService, private storage: Storage, private toastService: ToastService) {}
 
     close() {
         this.navController.pop();
@@ -71,6 +72,7 @@ export class AddFriend {
                 this.friendService.addFriendRequests(user.email, email, token)
                     .subscribe(data => {
                         this.users = [];
+                        this.toastService.showBottomShort("Successfully requested")
                     }, error => {
                         console.log(error["message"]);
                     });

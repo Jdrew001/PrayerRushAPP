@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, List } from 'ionic-angular';
+import { NavController, NavParams, List, Toast } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { FriendService } from '../../services/friend.service';
+import { ToastService } from '../../services/toast.service';
 import { AddFriend } from './addFriend';
 import {trigger, transition, style, animate, query, stagger} from '@angular/animations';
 
@@ -31,7 +32,7 @@ export class FriendsPage {
   list:List[] = [];
   requests:List[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private friendService : FriendService, private storage : Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private friendService : FriendService, private storage : Storage, private toastService : ToastService) {
   }
 
   ionViewWillEnter() {
@@ -57,6 +58,24 @@ export class FriendsPage {
             this.list = data as List[];
           }, error => {
             console.log(error["message"]);
+          });
+      });
+    });
+  }
+
+  removeFriend(user) {
+    this.storage.get("email").then(email => {
+      this.storage.get("token").then(token => {
+        this.friendService.removeFriend(user.email, email, token)
+          .subscribe(data => {
+            var index = this.list.indexOf(user, 0);
+            if(index > -1)
+              this.list.splice(index, 1);
+
+            this.toastService.showBottomShort("Successfully removed friend");
+          }, error => {
+            //an error has occurred toast
+            this.toastService.showBottomShort("An error has occurred");
           });
       });
     });
@@ -100,7 +119,8 @@ export class FriendsPage {
             if(index > -1)
               this.requests.splice(index, 1);
 
-              this.list.push(request);
+            this.list.push(request);
+            this.toastService.showBottomShort("Successfully added");
           }, error => {
             console.log(error["error"]);
           });

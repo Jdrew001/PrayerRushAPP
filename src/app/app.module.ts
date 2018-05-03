@@ -25,6 +25,7 @@ import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { ListService } from '../services/list.service';
 import { FriendService } from '../services/friend.service';
+import { ToastService } from '../services/toast.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -32,6 +33,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { IonicPageModule } from 'ionic-angular';
+import { Toast } from '@ionic-native/toast';
 
 import { AnimationService, AnimatesDirective } from 'css-animator';
 
@@ -83,11 +85,13 @@ import { AnimationService, AnimatesDirective } from 'css-animator';
     UserService,
     ListService,
     FriendService,
+    ToastService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Dialogs,
     NativePageTransitions,
     SpinnerDialog,
-    AnimationService
+    AnimationService,
+    Toast
   ]
 })
 export class AppModule {}

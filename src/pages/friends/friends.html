@@ -1,18 +1,18 @@
 <ion-header no-shadow>
-    <ion-navbar hideBackButton="true" color="dark">
-      <button clear="true" ion-button (click)="close()">
-        <ion-icon name="md-close"></ion-icon>
-      </button>
-    </ion-navbar>
-  </ion-header>
+  <ion-navbar hideBackButton="true" color="dark">
+    <button clear="true" ion-button (click)="close()">
+      <ion-icon name="md-close"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
 
 <ion-content class="friend-content">
 
-    <ion-fab right bottom>
-        <button ion-fab color="primary" (click)="openAddFriend()">
-            <ion-icon name="md-person-add"></ion-icon>
-        </button>
-    </ion-fab>
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="openAddFriend()">
+      <ion-icon name="md-person-add"></ion-icon>
+    </button>
+  </ion-fab>
 
   <!--Friend list view-->
   <ion-row class="logo-row" style="margin:0px;">
@@ -52,10 +52,16 @@
     <div [@listAnimation]="list.length">
       <ion-item *ngFor="let l of list" detail-push>
         <ion-row>
-          {{ l.firstname }} {{ l.lastname }}
-        </ion-row>
-        <ion-row>
-          <p>{{l.email}}</p>
+          <ion-col>
+            {{l.firstname}} {{l.lastname}}
+            <br>
+            <p>{{l.email}}</p>
+          </ion-col>
+          <ion-col>
+            <button float-right clear icon-only ion-button small (click)="removeFriend(l)">
+              <ion-icon name="md-trash"></ion-icon>
+            </button>
+          </ion-col>
         </ion-row>
       </ion-item>
     </div>

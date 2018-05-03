@@ -31,6 +31,16 @@ export class FriendService {
         return this.httpClient.post(Constants.BASE_URL+'api/user/friends', { email }, { headers });
     }
 
+    //remove User friend
+    removeFriend(email : string, mainEmail : string, token : string) {
+        let headers = new HttpHeaders({
+            'Content-Type' : 'application/json',
+            'Authorization' : 'Token ' + token
+        });
+
+        return this.httpClient.post(Constants.BASE_URL+'api/user/friend/remove/'+mainEmail, { email }, { headers });
+    }
+
     //get user friend requests
     getFriendRequests(email : string, token : string) {
         let headers = new HttpHeaders({

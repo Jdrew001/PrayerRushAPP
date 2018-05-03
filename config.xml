@@ -97,4 +97,5 @@
     <allow-navigation href="http://192.168.1.9:8100" />
     <allow-navigation href="http://192.168.1.10:8100" />
     <allow-navigation href="http://192.168.200.2:8100" />
+    <plugin name="cordova-plugin-x-toast" spec="^2.6.2" />
 </widget>
