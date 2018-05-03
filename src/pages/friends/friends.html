@@ -1,17 +1,18 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-title></ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only end>
-        <ion-icon name="md-person-add"></ion-icon>
+<ion-header no-shadow>
+    <ion-navbar hideBackButton="true" color="dark">
+      <button clear="true" ion-button (click)="close()">
+        <ion-icon name="md-close"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
-
-</ion-header>
+    </ion-navbar>
+  </ion-header>
 
 <ion-content class="friend-content">
+
+    <ion-fab right bottom>
+        <button ion-fab color="primary" (click)="openAddFriend()">
+            <ion-icon name="md-person-add"></ion-icon>
+        </button>
+    </ion-fab>
 
   <!--Friend list view-->
   <ion-row class="logo-row" style="margin:0px;">

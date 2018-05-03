@@ -1,0 +1,36 @@
+<ion-header no-shadow>
+  <ion-navbar hideBackButton="true" color="dark">
+    <button clear="true" ion-button (click)="close()">
+      <ion-icon name="md-close"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar placeholder="Insert email" [(ngModel)]="searchText" (keyup.enter)="search()" type="email" [showCancelButton]="shouldShowCancel" (ionCancel)="onCancel($event)">
+  </ion-searchbar>
+  
+  <ion-list>
+    <ion-item-divider>
+      Users
+    </ion-item-divider>
+    <p *ngIf="empty" padding>No User Found</p>
+    <div [@listAnimation]="users.length">
+      <ion-item *ngFor="let u of users" >
+        <ion-row>
+          <ion-col>
+            {{u.firstname}} {{u.lastname}}
+            <br>
+            <p>{{u.email}}</p>
+          </ion-col>
+          <ion-col>
+            <button float-right clear icon-only ion-button small (click)="requestFriend(u)">
+              <ion-icon name="md-person-add"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

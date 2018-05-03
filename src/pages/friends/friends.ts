@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, List } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { FriendService } from '../../services/friend.service';
+import { AddFriend } from './addFriend';
 import {trigger, transition, style, animate, query, stagger} from '@angular/animations';
 
 
@@ -12,13 +13,13 @@ import {trigger, transition, style, animate, query, stagger} from '@angular/anim
     trigger('listAnimation', [
       transition('* => *', [
         query(':leave', [
-          stagger(10, 
-            [ animate('0.2s'), style({ opacity: 0})])
+          stagger(20, 
+            [ animate('0.2s  ease-in-out'), style({ opacity: 0})])
         ],{ optional: true }),
         query(':enter', [
           style({ opacity: 0 }),
           stagger(20, [
-            animate('0.2s', style({ opacity: 1 }))
+            animate('0.2s  ease-in-out', style({ opacity: 1 }))
           ])
         ], { optional: true })
       ])
@@ -39,8 +40,12 @@ export class FriendsPage {
     this.loadFriendRequests();
   }
 
-  itemClick() {
-    console.log("Test");
+  close() {
+    this.navCtrl.pop();
+  }
+
+  openAddFriend() {
+    this.navCtrl.push(AddFriend);
   }
 
   loadUserFriends() {

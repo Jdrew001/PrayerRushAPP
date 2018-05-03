@@ -4,4 +4,6 @@ export class Constants {
     public static get FIRSTNAME(): string { return "firstname" };
     public static get LASTNAME(): string { return "lastname" };
     public static get EMAIL(): string { return "email" };
+
+    //var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   }

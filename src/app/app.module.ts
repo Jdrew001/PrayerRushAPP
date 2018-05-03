@@ -19,6 +19,7 @@ import { PrayerRequest } from '../pages/prayerrequest/PrayerRequest';
 import { Goals } from '../pages/goals/Goals';
 import { AddList } from '../pages/prayerlist/addlist';
 import { FriendsPage } from '../pages/friends/friends';
+import { AddFriend } from '../pages/friends/addFriend';
 
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
@@ -31,8 +32,6 @@ import { IonicStorageModule } from '@ionic/storage';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { IonicPageModule } from 'ionic-angular';
-
-
 
 import { AnimationService, AnimatesDirective } from 'css-animator';
 
@@ -50,6 +49,7 @@ import { AnimationService, AnimatesDirective } from 'css-animator';
     PrayerRequest,
     Goals,
     FriendsPage,
+    AddFriend,
     AnimatesDirective
   ],
   imports: [
@@ -73,7 +73,8 @@ import { AnimationService, AnimatesDirective } from 'css-animator';
     AddList,
     PrayerRequest,
     Goals,
-    FriendsPage
+    FriendsPage,
+    AddFriend
   ],
   providers: [
     StatusBar,

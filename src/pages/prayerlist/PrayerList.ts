@@ -19,12 +19,12 @@ import {trigger, transition, style, animate, query, stagger} from '@angular/anim
       transition('* => *', [
         query(':leave', [
           stagger(10, 
-            [ animate('0.2s'), style({ opacity: 0})])
+            [ animate('0.2s 0.1s ease-in-out'), style({ opacity: 0})])
         ],{ optional: true }),
         query(':enter', [
           style({ opacity: 0 }),
           stagger(20, [
-            animate('0.2s', style({ opacity: 1 }))
+            animate('0.2s 0.1s ease-in-out', style({ opacity: 1 }))
           ])
         ], { optional: true })
       ])
