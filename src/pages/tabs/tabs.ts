@@ -11,7 +11,12 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 import { SettingsPage } from '../settings/settings';
 import { FeedbackPage } from '../feedback/feedback';
 import { FriendsPage } from '../friends/friends';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
+import Stomp from 'stompjs';
+import SockJS from 'sockjs-client';
+
+import { ToastService } from '../../services/toast.service';
 import { LoginPage } from '../login/login';
 import { User } from '../../models/User';
 import { Constants } from '../../utilities/Constants';
@@ -33,10 +38,12 @@ export class TabsPage {
   lastname : string = "";
   username : string = "";
   user : User;
+  private title = 'WebSockets chat';
+  private stompClient;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(private menuController: MenuController, public navCtrl: NavController, private nativeTransitions: NativePageTransitions, private superTabsCtrl: SuperTabsController, private userService: UserService, private storage:Storage, private plt:Platform) {
+  constructor(private menuController: MenuController, private localNot : LocalNotifications, private toastService: ToastService, public navCtrl: NavController, private nativeTransitions: NativePageTransitions, private superTabsCtrl: SuperTabsController, private userService: UserService, private storage:Storage, private plt:Platform) {
     this.pages = [
       { title: 'Settings', component: SettingsPage},
       { title: 'Feedback', component: FeedbackPage},
@@ -46,13 +53,33 @@ export class TabsPage {
     plt.ready().then(() => {
       this.menuController.swipeEnable(false);
       //check with api to see if the user has filled out information
-      
     });
   }
 
   ngAfterViewInit()
   {
     this.superTabsCtrl.showToolbar(true);
+  }
+
+  ionViewDidLoad() {
+    // to check if we have permission
+    let ws = new SockJS(Constants.BASE_URL+"rush-api-socket");
+    console.log(ws);
+    this.stompClient = Stomp.over(ws);
+    let that = this;
+    this.stompClient.connect({}, function(frame) {
+      that.stompClient.subscribe("/push", (data) => {
+        console.log(data);
+        var obj = JSON.parse(data.body);
+        that.toastService.showBottomShort(obj.message);
+        // Schedule a single notification
+        that.localNot.schedule({
+          id: 1,
+          text: 'Single ILocalNotification'
+        });
+      }, error => {
+      });
+    });
   }
 
   ionViewWillEnter() {
@@ -109,6 +136,7 @@ export class TabsPage {
     this.storage.remove('token').then((val) => {
       this.nativeTransitions.fade(null);
       this.navCtrl.setRoot(LoginPage);
+      this.stompClient.disconnect();
       this.menuController.close();
     });
   }

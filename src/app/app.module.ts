@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { Dialogs } from '@ionic-native/dialogs';
 import { SuperTabsModule } from 'ionic2-super-tabs';
 import { stagger } from '@angular/animations';
+import { StompService } from 'ng2-stomp-service';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 import { ModalPage } from '../pages/modal/modal';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -26,6 +28,7 @@ import { UserService } from '../services/user.service';
 import { ListService } from '../services/list.service';
 import { FriendService } from '../services/friend.service';
 import { ToastService } from '../services/toast.service';
+import { WebSocketService } from '../services/websocket.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -34,6 +37,7 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 import { IonicPageModule } from 'ionic-angular';
 import { Toast } from '@ionic-native/toast';
+import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { AnimationService, AnimatesDirective } from 'css-animator';
 
@@ -91,7 +95,11 @@ import { AnimationService, AnimatesDirective } from 'css-animator';
     NativePageTransitions,
     SpinnerDialog,
     AnimationService,
-    Toast
+    Toast,
+    StompService,
+    WebSocketService,
+    LocalNotifications,
+    BackgroundMode
   ]
 })
 export class AppModule {}
