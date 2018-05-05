@@ -28,6 +28,7 @@ import { UserService } from '../services/user.service';
 import { ListService } from '../services/list.service';
 import { FriendService } from '../services/friend.service';
 import { ToastService } from '../services/toast.service';
+import { Params } from '../services/params.service';
 import { WebSocketService } from '../services/websocket.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -40,6 +41,7 @@ import { Toast } from '@ionic-native/toast';
 import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { AnimationService, AnimatesDirective } from 'css-animator';
+import { RequestService } from '../services/requests.service';
 
 @NgModule({
   declarations: [
@@ -90,6 +92,8 @@ import { AnimationService, AnimatesDirective } from 'css-animator';
     ListService,
     FriendService,
     ToastService,
+    RequestService,
+    Params,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Dialogs,
     NativePageTransitions,

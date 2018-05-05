@@ -1,9 +1,23 @@
 <ion-content class="contact-content">
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
+    <ion-item-divider>
+      Unanswered Requests
+    </ion-item-divider>
+    <div>
+      <ion-item *ngFor="let r of requests" detail-push>
+        <ion-row>
+          <h4>
+            {{ r.description }}
+          </h4>
+        </ion-row>
+        <ion-row>
+        <p>{{ r.firstname }} {{ r.lastname }}</p>
+        </ion-row>
+        <ion-row>
+            <p>{{r.email}}</p>
+        </ion-row>
+      </ion-item>
+    </div>
+
   </ion-list>
 </ion-content>

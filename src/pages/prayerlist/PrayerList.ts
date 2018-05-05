@@ -46,7 +46,7 @@ export class PrayerList implements OnInit {
   constructor(public navCtrl: NavController, private storage: Storage, public plt: Platform, private userService: UserService,
   private navTrans: NativePageTransitions, private listService : ListService, private app: App) {
     
-    //when platform is loaded, check with api
+    
   }
 
   ngOnInit() {
@@ -55,6 +55,7 @@ export class PrayerList implements OnInit {
 
   ionViewDidLoad() {
     this.loadLists();
+    
   }
 
   openOption(itemSlide: ItemSliding, item: Item) {
@@ -96,7 +97,6 @@ export class PrayerList implements OnInit {
   }
 
   loadLists() {
-    this.list = [];
     this.storage.get("email").then(email => {
       this.email = email;
       this.storage.get("token").then((token) => {

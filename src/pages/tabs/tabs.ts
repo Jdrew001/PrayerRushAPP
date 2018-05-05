@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController } from 'ionic-angular';
+import { NavController, MenuController, List, Events } from 'ionic-angular';
 import { PrayerList } from '../prayerlist/PrayerList';
 import { SuperTabsController } from 'ionic2-super-tabs';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -12,6 +12,7 @@ import { SettingsPage } from '../settings/settings';
 import { FeedbackPage } from '../feedback/feedback';
 import { FriendsPage } from '../friends/friends';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { Params } from '../../services/params.service';
 
 import Stomp from 'stompjs';
 import SockJS from 'sockjs-client';
@@ -43,7 +44,7 @@ export class TabsPage {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(private menuController: MenuController, private localNot : LocalNotifications, private toastService: ToastService, public navCtrl: NavController, private nativeTransitions: NativePageTransitions, private superTabsCtrl: SuperTabsController, private userService: UserService, private storage:Storage, private plt:Platform) {
+  constructor(private menuController: MenuController, public events: Events, private params: Params, private localNot : LocalNotifications, private toastService: ToastService, public navCtrl: NavController, private nativeTransitions: NativePageTransitions, private superTabsCtrl: SuperTabsController, private userService: UserService, private storage:Storage, private plt:Platform) {
     this.pages = [
       { title: 'Settings', component: SettingsPage},
       { title: 'Feedback', component: FeedbackPage},
@@ -53,6 +54,7 @@ export class TabsPage {
     plt.ready().then(() => {
       this.menuController.swipeEnable(false);
       //check with api to see if the user has filled out information
+      
     });
   }
 
@@ -61,7 +63,7 @@ export class TabsPage {
     this.superTabsCtrl.showToolbar(true);
   }
 
-  ionViewDidLoad() {
+  connectNotifications(email) {
     // to check if we have permission
     let ws = new SockJS(Constants.BASE_URL+"rush-api-socket");
     console.log(ws);
@@ -70,12 +72,17 @@ export class TabsPage {
     this.stompClient.connect({}, function(frame) {
       that.stompClient.subscribe("/push", (data) => {
         console.log(data);
+      });
+      that.stompClient.subscribe("/request/"+email, (data) => {
         var obj = JSON.parse(data.body);
         that.toastService.showBottomShort(obj.message);
-        // Schedule a single notification
+        that.events.publish("request-added", obj.requestDAO);
+
+        
         that.localNot.schedule({
           id: 1,
-          text: 'Single ILocalNotification'
+          title: obj.title,
+          text: obj.message
         });
       }, error => {
       });
@@ -83,20 +90,9 @@ export class TabsPage {
   }
 
   ionViewWillEnter() {
-    this.storage.get("firstname").then(val => {
-      this.firstname = val;
-    });
-    this.storage.get("lastname").then(val => {
-      this.lastname = val;
-    });
-    this.storage.get("username").then(val => {
-      this.username = val;
-    });
-    this.storage.get("email").then(val => {
-      this.email = val;
-    });
     this.storage.get("token").then((val) => {
       this.email = this.helper.decodeToken(val)["email"];
+      this.connectNotifications(this.email);
       this.userService.checkUserInformation(this.email, val).subscribe(data => {
 
         if(data["condition"] == null) {

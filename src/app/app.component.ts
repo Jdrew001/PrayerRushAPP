@@ -23,8 +23,14 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      this.backgroundMode.enable();
+      this.backgroundMode.setDefaults({
+        hidden: true,
+        silent: true,
+        title: "Keeping you updated!",
+        text: ""
+      });
       this.backgroundMode.overrideBackButton();
+      this.backgroundMode.enable();
     });    
   }
 }
