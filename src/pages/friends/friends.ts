@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, List, Toast } from 'ionic-angular';
+import { NavController, NavParams, List, Toast, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { FriendService } from '../../services/friend.service';
 import { ToastService } from '../../services/toast.service';
@@ -32,7 +32,11 @@ export class FriendsPage {
   list:List[] = [];
   requests:List[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private friendService : FriendService, private storage : Storage, private toastService : ToastService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private events: Events, private friendService : FriendService, private storage : Storage, private toastService : ToastService) {
+    this.events.unsubscribe('request-added');
+    this.events.subscribe('request-added', (data) => {
+      this.requests.unshift(data);
+    });
   }
 
   ionViewWillEnter() {

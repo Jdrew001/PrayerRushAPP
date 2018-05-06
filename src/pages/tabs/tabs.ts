@@ -53,8 +53,6 @@ export class TabsPage {
     
     plt.ready().then(() => {
       this.menuController.swipeEnable(false);
-      //check with api to see if the user has filled out information
-      
     });
   }
 
@@ -70,29 +68,47 @@ export class TabsPage {
     this.stompClient = Stomp.over(ws);
     let that = this;
     this.stompClient.connect({}, function(frame) {
+      that.stompClient.unsubscribe("/push");
+      that.stompClient.unsubscribe("/request/"+email);
+      //push notifications -- remove and put in app module TODO
       that.stompClient.subscribe("/push", (data) => {
         console.log(data);
       });
+
+      //subscribe to the request socket to receive notifications
       that.stompClient.subscribe("/request/"+email, (data) => {
         var obj = JSON.parse(data.body);
         that.toastService.showBottomShort(obj.message);
         that.events.publish("request-added", obj.requestDAO);
-
-        
         that.localNot.schedule({
           id: 1,
           title: obj.title,
           text: obj.message
         });
       }, error => {
+
       });
+
+      //subscribe to friend notifications
+      that.stompClient.subscribe("/friend/"+email, (data) => {
+        var obj = JSON.parse(data.body);
+        that.toastService.showBottomShort(obj.message);
+        if(obj.title == "New Friend Request") {
+          that.events.publish("friend-request", obj.friendDAO);
+        } else {
+          
+        }
+      })
     });
   }
 
-  ionViewWillEnter() {
+  ionViewDidLoad() {
     this.storage.get("token").then((val) => {
+
+      //Decode token -> email and save to a token
       this.email = this.helper.decodeToken(val)["email"];
       this.connectNotifications(this.email);
+      //Check the user information passing in the email 
       this.userService.checkUserInformation(this.email, val).subscribe(data => {
 
         if(data["condition"] == null) {
@@ -121,9 +137,8 @@ export class TabsPage {
       }, error => {
         // TODO
       });
-    });
+    }); 
   }
-
   openPage(page) {
     this.navCtrl.push(page.component);
   }

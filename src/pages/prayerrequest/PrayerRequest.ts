@@ -10,8 +10,9 @@ import { Storage } from '@ionic/storage';
 export class PrayerRequest implements OnDestroy {
 
   requests : List[] = [];
-
+  
   constructor(public navCtrl: NavController, public events: Events, private requestService : RequestService, private storage:Storage) {
+    this.events.unsubscribe('request-added');
     this.events.subscribe('request-added', (data) => {
       this.requests.unshift(data);
     });
@@ -19,7 +20,6 @@ export class PrayerRequest implements OnDestroy {
 
   ngOnDestroy() {
     console.log("Component destroyed");
-    this.events.unsubscribe('request-added');
   }
 
   ionViewDidLoad() {
