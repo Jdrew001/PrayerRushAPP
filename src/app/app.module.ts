@@ -18,6 +18,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { FeedbackPage } from '../pages/feedback/feedback';
 import { PrayerList } from '../pages/prayerlist/PrayerList';
 import { PrayerRequest } from '../pages/prayerrequest/PrayerRequest';
+import { AddRequest } from '../pages/prayerrequest/addRequest';
 import { Goals } from '../pages/goals/Goals';
 import { AddList } from '../pages/prayerlist/addlist';
 import { FriendsPage } from '../pages/friends/friends';
@@ -55,6 +56,7 @@ import { RequestService } from '../services/requests.service';
     PrayerList,
     AddList,
     PrayerRequest,
+    AddRequest,
     Goals,
     FriendsPage,
     AddFriend,
@@ -80,6 +82,7 @@ import { RequestService } from '../services/requests.service';
     PrayerList,
     AddList,
     PrayerRequest,
+    AddRequest,
     Goals,
     FriendsPage,
     AddFriend

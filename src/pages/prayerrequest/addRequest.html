@@ -1,0 +1,30 @@
+<ion-header no-shadow>
+  <ion-navbar hideBackButton="true" color="dark">
+    <button clear="true" ion-button (click)="close()">
+      <ion-icon name="md-close"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+<ion-content class="home-content" padding>
+  <form [formGroup]="form" (ngSubmit)="addRequest()">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+
+          <ion-item>
+            <ion-label floating>Request</ion-label>
+            <ion-textarea type="text" formControlName="description"></ion-textarea>
+          </ion-item>
+
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button large class="submit-btn" full type="submit">Add Request</button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>

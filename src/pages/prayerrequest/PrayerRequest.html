@@ -1,21 +1,34 @@
-<ion-content class="contact-content">
-  <ion-list>
+<ion-content class="request-content">
+
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="showAddRequest()">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-list no-lines>
     <ion-item-divider>
       Unanswered Requests
     </ion-item-divider>
-    <div>
-      <ion-item *ngFor="let r of requests" detail-push>
-        <ion-row>
-          <h4>
-            {{ r.description }}
-          </h4>
-        </ion-row>
-        <ion-row>
-        <p>{{ r.firstname }} {{ r.lastname }}</p>
-        </ion-row>
-        <ion-row>
-            <p>{{r.email}}</p>
-        </ion-row>
+    <div  [@listAnimation]="requests.length">
+      <ion-item *ngFor="let r of requests" >
+        <ion-card>
+          <ion-card-header>
+            <h4>
+              {{ r.description }}
+            </h4>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <p>{{ r.firstname }} {{ r.lastname }}</p>
+            </ion-row>
+            <ion-row>
+              <p>{{r.email}}</p>
+            </ion-row>
+          </ion-card-content>
+
+        </ion-card>
+
       </ion-item>
     </div>
 

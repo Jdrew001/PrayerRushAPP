@@ -132,7 +132,6 @@ export class PrayerList implements OnInit {
         this.token = token;
         this.listService.deleteUserList(this.email, item.listId, item.name, item.description, item.date, token)
           .subscribe(data => {
-            //this.loadLists();
             var index = this.list.indexOf(item, 0);
             if(index > -1) {
               this.list.splice(index, 1);

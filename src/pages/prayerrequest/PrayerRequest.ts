@@ -1,17 +1,36 @@
 import { Component, OnDestroy } from '@angular/core';
-import { NavController, List, Events } from 'ionic-angular';
+import { NavController, List, App, Events } from 'ionic-angular';
 import { RequestService } from '../../services/requests.service';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { Storage } from '@ionic/storage';
+import { AddRequest } from './addRequest';
+import {trigger, transition, style, animate, query, stagger} from '@angular/animations';
 
 @Component({
   selector: 'page-request',
-  templateUrl: 'PrayerRequest.html'
+  templateUrl: 'PrayerRequest.html',
+  animations: [
+    trigger('listAnimation', [
+      transition('* => *', [
+        query(':leave', [
+          stagger(10, 
+            [ animate('0.2s 0.1s ease-in-out'), style({ opacity: 0})])
+        ],{ optional: true }),
+        query(':enter', [
+          style({ opacity: 0 }),
+          stagger(20, [
+            animate('0.2s 0.1s ease-in-out', style({ opacity: 1 }))
+          ])
+        ], { optional: true })
+      ])
+    ])
+  ]
 })
 export class PrayerRequest implements OnDestroy {
 
   requests : List[] = [];
   
-  constructor(public navCtrl: NavController, public events: Events, private requestService : RequestService, private storage:Storage) {
+  constructor(public navCtrl: NavController, private app: App, private navTrans: NativePageTransitions, public events: Events, private requestService : RequestService, private storage:Storage) {
     this.events.unsubscribe('request-added');
     this.events.subscribe('request-added', (data) => {
       this.requests.unshift(data);
@@ -24,6 +43,16 @@ export class PrayerRequest implements OnDestroy {
 
   ionViewDidLoad() {
     this.loadRequests();
+  }
+
+  showAddRequest() {
+    // show modal screen
+    let options: NativeTransitionOptions = {
+      direction: 'up',
+      duration: 350
+    };
+    this.navTrans.slide(options);
+    this.app.getRootNav().push(AddRequest, { "PrayerRequest" : this });
   }
 
   private loadRequests() {
