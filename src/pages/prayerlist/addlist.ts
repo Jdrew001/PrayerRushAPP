@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, List, App, NavParams } from 'ionic-angular';
+import { NavController, List, App, NavParams, Events } from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { ListService } from '../../services/list.service';
 import { Storage } from '@ionic/storage';
+import { list } from '../../models/list';
 
 @Component({
     selector: 'page-add-list',
@@ -12,10 +13,10 @@ import { Storage } from '@ionic/storage';
 export class AddList {
 
     form: FormGroup;
-    list: any;
+    list: list;
     update: boolean = false;
 
-    constructor(public navController: NavController, private formBuilder: FormBuilder, private app: App, private navTrans: NativePageTransitions,
+    constructor(public navController: NavController, private events: Events, private formBuilder: FormBuilder, private app: App, private navTrans: NativePageTransitions,
         private listService: ListService, private storage : Storage, private navParams : NavParams) {
             console.log(this.navParams.get("list"));
             if(this.navParams.get("list") != null) {
@@ -45,10 +46,10 @@ export class AddList {
             this.storage.get("email").then(email => {
                 this.storage.get("token").then(token => {
                     this.list = this.navParams.get("list");
-                    this.listService.updateUserListItem(email, token, +this.list.listId, this.form.value.name, this.form.value.description, this.list.date)
+                    this.listService.updateUserListItem(email, token, +this.list.listId, this.form.value.name, this.form.value.description, this.form.value.date)
                     .subscribe(data => {
                         this.navController.pop();
-                        this.navParams.get("PrayerList").loadLists();
+                        this.events.publish("list-added", this.list);
                     }, error => {
                       console.log(error["message"]);
                     })
@@ -60,7 +61,7 @@ export class AddList {
                     this.listService.addNewList(this.form.value.name, this.form.value.description, email, token)
                         .subscribe(data => {
                             this.navController.pop();
-                            this.navParams.get("PrayerList").loadLists();
+                            this.events.publish("list-added", new list(this.form.value.name, this.form.value.description, this.form.value.date));
                         }, error => {
                             console.log(error["message"]);
                         });

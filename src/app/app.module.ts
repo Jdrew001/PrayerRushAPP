@@ -9,6 +9,7 @@ import { SuperTabsModule } from 'ionic2-super-tabs';
 import { stagger } from '@angular/animations';
 import { StompService } from 'ng2-stomp-service';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { AutoHideDirective } from '../directives/auto-hide/auto-hide';
 
 import { ModalPage } from '../pages/modal/modal';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -60,7 +61,8 @@ import { RequestService } from '../services/requests.service';
     Goals,
     FriendsPage,
     AddFriend,
-    AnimatesDirective
+    AnimatesDirective,
+    AutoHideDirective
   ],
   imports: [
     BrowserModule,

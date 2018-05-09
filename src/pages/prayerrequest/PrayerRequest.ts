@@ -33,6 +33,7 @@ export class PrayerRequest implements OnDestroy {
   constructor(public navCtrl: NavController, private app: App, private navTrans: NativePageTransitions, public events: Events, private requestService : RequestService, private storage:Storage) {
     this.events.unsubscribe('request-added');
     this.events.subscribe('request-added', (data) => {
+      console.log(data);
       this.requests.unshift(data);
     });
   }
