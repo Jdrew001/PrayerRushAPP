@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { NavController, List, App, Item, ItemSliding, Events } from 'ionic-angular';
+import { NavController, List, App, Item, ItemSliding } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import {Platform} from 'ionic-angular';
@@ -43,12 +43,10 @@ export class PrayerList implements OnInit {
   helper = new JwtHelperService();
   @ViewChild('listItem') element;
 
-  constructor(public navCtrl: NavController, private events: Events, private storage: Storage, public plt: Platform, private userService: UserService,
+  constructor(public navCtrl: NavController, private storage: Storage, public plt: Platform, private userService: UserService,
   private navTrans: NativePageTransitions, private listService : ListService, private app: App) {
-    this.events.unsubscribe("list-added");
-    this.events.subscribe("list-added", (data) => {
-      this.list.unshift(data);
-    });
+    
+    
   }
 
   ngOnInit() {
@@ -105,7 +103,6 @@ export class PrayerList implements OnInit {
         this.token = token;
         this.listService.getUserLists(this.email, this.token)
           .subscribe(data => {
-            console.log(data);
             this.list = data as List[];
           }, error => {
 
@@ -133,7 +130,6 @@ export class PrayerList implements OnInit {
       this.email = email;
       this.storage.get("token").then((token) => {
         this.token = token;
-        console.log(item.listId);
         this.listService.deleteUserList(this.email, item.listId, item.name, item.description, item.date, token)
           .subscribe(data => {
             var index = this.list.indexOf(item, 0);
