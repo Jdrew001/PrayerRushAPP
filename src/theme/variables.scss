@@ -36,8 +36,9 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #09544e,
+  primary:    #203138,
   secondary:  #32db64,
+  third:      #07575B,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #073d39
@@ -54,7 +55,11 @@ $colors: (
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-
+$text-input-md-highlight-color-invalid: transparent;
+$text-input-md-highlight-color-valid: transparent;
+$text-input-md-show-invalid-highlight: transparent;
+$text-input-md-highlight-color: transparent;
+$text-input-md-show-valid-highlight: transparent;
 
 
 

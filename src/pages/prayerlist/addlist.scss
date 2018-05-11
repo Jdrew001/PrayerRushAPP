@@ -1,10 +1,55 @@
 page-add-list {
+
+    ion-content {
+        background-image: url('../../assets/imgs/bg_screen.png');
+    }
+
     button {
         //background-color: transparent !important;
-
+        padding: 15px !important;
         ion-icon {
             color: white;
             font-size: 25px;
         }
+    }
+
+    ion-list {
+        background: transparent !important;
+        padding: 10px 0px;
+        margin-top: 30px;
+        color: black;
+      }
+    ion-card {
+        margin: 25px 15px !important;
+        width: auto !important;
+    }
+
+    ion-item.item-name {
+        padding: 10px !important;
+    }
+
+    ion-item.item-description {
+        padding: 15px !important;
+    }
+
+    ion-item {
+        font-size: 1.2em;
+        margin-bottom: 50px;
+        background-color: transparent !important;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 2px 3px rgba(0,0,0,0.24);
+
+        .item-inner {
+            border: none !important;
+        }
+
+        ion-input, ion-textarea {
+            color: #203138;
+            background-color: transparent !important;
+            padding: 0px;
+        }
+
+        ion-label {
+             color:#203138 !important;
+         }
     }
 }

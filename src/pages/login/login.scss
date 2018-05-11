@@ -2,7 +2,9 @@ page-login {
  
     .login-content {
       background: white;
-      background-image: url('../../assets/imgs/Quepal.jpg');
+      background-image: url('../../assets/imgs/bg_screen.png');
+      background-repeat: no-repeat;
+      background-size: 100%;
    
       .logo-row {
         padding-top: 20px;
@@ -31,11 +33,11 @@ page-login {
            color:#09544e;
 
            ion-input {
-               color: #09544e
+               color: white;
            }
 
            ion-label {
-                color:#09544e !important;
+                color:white !important;
             }
        }
 
@@ -53,8 +55,7 @@ page-login {
        }
    
        .submit-btn {
-         border-color:#09544e;
-         background-color:#09544e;
+         border-color:white;
          color:white;
        }
    

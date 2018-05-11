@@ -1,35 +1,36 @@
 <ion-header no-shadow>
-  <ion-navbar hideBackButton="true" color="dark">
+  <ion-navbar hideBackButton="true" color="third">
     <button clear="true" ion-button (click)="close()">
       <ion-icon name="md-close"></ion-icon>
     </button>
   </ion-navbar>
 </ion-header>
-<ion-content class="home-content" padding>
+<ion-content class="home-content">
+  <ion-row class="logo-row" style="margin:0px;">
+    <img style="width: 100%; height: 150px" src="../../assets/imgs/placeholder-image.png" />
+  </ion-row>
   <form [formGroup]="form" (ngSubmit)="addList()">
     <ion-row>
       <ion-col>
-        <ion-list inset>
+        <ion-list >
 
-          <ion-item>
-            <ion-label floating>List Item</ion-label>
-            <ion-input type="text" formControlName="name"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label floating>Description</ion-label>
-            <ion-input type="text" formControlName="description"></ion-input>
-          </ion-item>
-
+          <ion-card>
+            <ion-item class="item-name">
+              <ion-input type="text" formControlName="name" placeholder="what to pray about"></ion-input>
+            </ion-item>
+          </ion-card>
+          <ion-card>
+            <ion-item class="item-description">
+              <ion-textarea type="text" formControlName="description" placeholder="enter details"></ion-textarea>
+            </ion-item>
+          </ion-card>
         </ion-list>
       </ion-col>
     </ion-row>
-
     <ion-row>
-      <ion-col >
-        <button ion-button large class="submit-btn" full type="submit">Add List</button>
+      <ion-col>
+        <button color="third" ion-button large class="submit-btn" full type="submit">Add List</button>
       </ion-col>
     </ion-row>
-
   </form>
 </ion-content>

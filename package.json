@@ -34,7 +34,7 @@
     "@ionic/pro": "1.0.20",
     "@ionic/storage": "^2.1.3",
     "com.telerik.plugins.nativepagetransitions": "^0.6.5",
-    "cordova-android": "^7.0.0",
+    "cordova-android": "7.0.0",
     "cordova-ios": "^4.5.4",
     "cordova-plugin-background-mode": "^0.7.2",
     "cordova-plugin-badge": "^0.8.7",
@@ -56,7 +56,11 @@
     "sockjs-client": "^1.1.4",
     "stompjs": "^2.3.3",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.26"
+    "zone.js": "0.8.26",
+    "cordova-plugin-device": "^2.0.1",
+    "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-plugin-ionic-webview": "^1.2.0",
+    "cordova-plugin-ionic-keyboard": "^2.0.5"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.8",
@@ -80,7 +84,14 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-local-notification": {},
       "cordova-plugin-background-mode": {},
-      "cordova-plugin-native-spinner": {}
-    }
+      "cordova-plugin-native-spinner": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-keyboard": {}
+    },
+    "platforms": [
+      "android"
+    ]
   }
 }

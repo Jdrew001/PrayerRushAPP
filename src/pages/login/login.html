@@ -1,4 +1,5 @@
 <ion-content class="login-content" padding>
+  <div class="overlay">
     <ion-row class="logo-row">
       <ion-col></ion-col>
       <ion-col width-100>
@@ -28,11 +29,12 @@
         
         <ion-row>
           <ion-col class="signup-col">
-            <button ion-button large class="submit-btn" full type="submit">Login</button>
+            <button ion-button large outline class="submit-btn" block type="submit" >Login</button>
           </ion-col>
         </ion-row>
         
       </form>
       <button ion-button class="register-btn" block clear (click)="goToRegisterPage()">Create New Account</button>
     </div>
+  </div>
   </ion-content>

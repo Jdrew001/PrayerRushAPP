@@ -1,17 +1,12 @@
 page-registration {
 
     ion-header {
-        background-color: #09544e;
-    }
-
-    ion-navbar {
-        background-color: #09544e;
-        color: white;
+      background-color: transparent !important;
     }
  
     .login-content {
       background: white;
-      background-image: url('../../assets/imgs/Quepal.jpg');
+      background-image: url('../../assets/imgs/bg_screen.png');
    
       .logo-row {
         padding-top: 20px;
@@ -40,11 +35,11 @@ page-registration {
            color:#09544e;
 
            ion-input {
-               color: #09544e
+               color: white;
            }
 
            ion-label {
-                color:#09544e !important;
+                color:white !important;
             }
        }
 
@@ -62,8 +57,7 @@ page-registration {
        }
    
        .submit-btn {
-         border-color:#09544e;
-         background-color:#09544e;
+         border-color:white;
          color:white;
        }
    
